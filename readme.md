@@ -23,7 +23,7 @@ The following dependencies needs to be previously installed :
 2. PostgreSQL
 ```
 docker pull postgres
-docker run --name aboro -e POSTGRES_PASSWORD=aboro -d postgres
+docker run --name abcd -e POSTGRES_PASSWORD=abcd -d postgres
 ```
 
 3. PG Admin
@@ -115,7 +115,7 @@ CREATE TRIGGER products_notify_event
 And wait, all events are logged.
 
 ## Check in ES
-You can check data in ES by requesting : http://localhost:9200/aboro/_search?q=jcante
+You can check data in ES by requesting : http://localhost:9200/abcd/_search?q=jcante
 
 # Files :
 - PostGresToES.go => Job Go
