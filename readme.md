@@ -1,6 +1,4 @@
-# PostGres To ElasticSearch in Go
-
-
+# PostgreSQL To ElasticSearch in Go
 
 
 # Requirements
@@ -13,11 +11,8 @@ The following dependencies needs to be previously installed :
 * ElasticSearch (index)
 * Docker (containerizer)
 * PG Admin (Sql manager)
-* kibana (visualize Elasticsearch data)
-
 
 # Installation
-
 
 1. Docker :  https://docs.docker.com/install/
 2. PostgreSQL
