@@ -37,16 +37,10 @@ docker pull elasticsearch
 docker run --restart=always -d -p 9200:9200 -p 9300:9300 -it -h elasticsearch --name elasticsearch elasticsearch
 ```
 
-5. Kibana
-```
-docker pull kibana
-docker run --restart=always -d -p 5601:5601 -h kibana --name kibana --link elasticsearch:elasticsearch kibana
-```
-
 ## Configure :
-1. Create index (postMan) :
+1. Create index :
 ```
-PUT http://localhost:9200/aboro
+PUT http://localhost:9200/<INDEX_NAME>
 {
     "settings" : {
         "index" : {
@@ -56,7 +50,7 @@ PUT http://localhost:9200/aboro
     }
 }
 OR :
-curl -XPUT  'http://localhost:9200/aboro' -d '{"settings" : {"number_of_shards" : 5, "number_of_replicas" : 2}}'
+curl -XPUT  'http://localhost:9200/<INDEX_NAME>' -d '{"settings" : {"number_of_shards" : 5, "number_of_replicas" : 2}}'
 ```
 2. Create the PostgreSql function :
 ```
@@ -108,18 +102,21 @@ CREATE TRIGGER products_notify_event
     FOR EACH ROW
     EXECUTE PROCEDURE public.notify_event();
 ```
-4. Run Go script
+
+4. Install Go
+```https://go.dev/doc/install```
+5. Init go.mod
+```go mod init PostGresToES```
+6. Install dependencies
+```go mod tidy```
+7. Setup (auth, indexName) : https://github.com/120dev/ElasticSearch-postgres/blob/master/PostGresToES.go#L20
+8. Build
+```go build PostGresToES.go && chmod +x ./PostGresToES```
+9. Run Go script
 ```
 ./PostGresToES
 ```
 And wait, all events are logged.
-
-## Check in ES
-You can check data in ES by requesting : http://localhost:9200/abcd/_search?q=jcante
-
-# Files :
-- PostGresToES.go => Job Go
-- fonction.sql => All SQL methods + test request
 
 # UML diagrams
 
