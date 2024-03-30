@@ -12,6 +12,14 @@ The following dependencies needs to be previously installed :
 * Docker (containerizer)
 * PG Admin (Sql manager)
 
+Two ways to start listening:
+
+  1/ Via PostGresToES.go: this will save the raw data from the database
+  2/ Via PostGresToES_ApiGateway.go: this will query the API in order to retrieve JSON which will be indexed in ES
+
+Nothing changes in terms of triggers
+
+
 # Installation
 
 1. Docker :  https://docs.docker.com/install/
@@ -105,11 +113,12 @@ CREATE TRIGGER products_notify_event
 6. Install dependencies
 ```go mod tidy```
 7. Setup (auth, indexName) : https://github.com/120dev/ElasticSearch-postgres/blob/master/PostGresToES.go#L20
-8. Build
-```go build PostGresToES.go && chmod +x ./PostGresToES```
-9. Run Go script
+8. if PostGresToES_ApiGateway.go : setup conf.yaml
+9. Build
+```go build PostGresToES.go && chmod +x ./PostGresToES``` or ```go build PostGresToES_ApiGateway.go && chmod +x ./PostGresToES_ApiGateway```
+10. Run Go script
 ```
-./PostGresToES
+./PostGresToES or ./PostGresToES_ApiGateway
 ```
 And wait, all events are logged.
 
