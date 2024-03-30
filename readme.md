@@ -14,8 +14,8 @@ The following dependencies needs to be previously installed :
 
 Two ways to start listening:
 
-  1/ Via PostGresToES.go: this will save the raw data from the database
-  2/ Via PostGresToES_ApiGateway.go: this will query the API in order to retrieve JSON which will be indexed in ES
+ 1. Via PostGresToES.go: this will save the raw data from the database
+2. Via PostGresToES_ApiGateway.go: this will query the API in order to retrieve JSON which will be indexed in ES
 
 Nothing changes in terms of triggers
 
